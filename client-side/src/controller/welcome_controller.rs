@@ -11,18 +11,17 @@ pub(crate) async fn welcome_student_client_api()
     match Client::new().get("http://localhost:3000/server/welcome")
         .send().await {
         Ok(response) => {
-            println!("{}", response.status());
+            println!("Response Status is: {}", response.status());
             if response.status() == StatusCode::OK {
-                println!("Yes");
                 match response.json::<SuccessResponse<Student>>().await {
-                    Ok(student) => {
-                        println!("after yes: {:?}", student.data);
+                    Ok(response) => {
+                        println!("The Responded Student is: {:?}", response.data);
 
                         // Fire the Response.
                         Ok(Json(SuccessResponse {
                             code: 200,
                             message: "Success".to_string(),
-                            data: Some(student.data.unwrap()),
+                            data: Some(response.data.unwrap()),
                         }))
                     }
                     Err(_) => Err(ServerErrorResponse::InternalServerError(ErrorResponse{
@@ -32,7 +31,6 @@ pub(crate) async fn welcome_student_client_api()
                     }))
                 }
             } else {
-                println!("I am in else");
                 Err(ServerErrorResponse::InternalServerError(ErrorResponse{
                     code: 500,
                     message: "Status Code is not OK".to_string(),

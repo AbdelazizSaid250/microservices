@@ -21,7 +21,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::new(JsonConfig::default().limit(4096)))
             .configure(routes)
     })
-        .bind(format!("{}:{}", CONFIG.host, CONFIG.rest_port))
+        .bind(format!("{}:{}", CONFIG.host, CONFIG.rest_client_port))
         .expect("REST Server binding exception")
         .run()
         .await

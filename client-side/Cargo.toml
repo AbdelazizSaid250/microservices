@@ -1,8 +1,17 @@
 [package]
 name = "client-side"
 version = "0.1.0"
+authors = ["Abdelaziz Said <abdelazizsaid250@gmail.com>"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+actix-web = "4.0.1"
+dotenv = "0.15"
+uuid = { version = "=0.8", features = ["serde", "v4"] }
+lazy_static = "1.4.*"
+envy = "0.4"
+tracing-subscriber = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+reqwest = { version = "0.11", features = ["json"] }

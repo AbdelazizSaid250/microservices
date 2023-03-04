@@ -10,8 +10,8 @@ lazy_static! {
 #[derive(Clone, Debug, Deserialize)]
 pub struct Config {
     pub host: String,
-    pub rest_port: i32,
-    pub graphql_port: i32,
+    pub rest_server_port: i32,
+    pub rest_client_port: i32,
     pub session_name: String,
     pub session_key: String,
     pub session_timeout: i64,
